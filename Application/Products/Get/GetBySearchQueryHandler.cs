@@ -19,6 +19,7 @@ namespace Application.Products.Get
             var productQuery = _context.Products.AsNoTracking().Where(p => p.Name.ToLower().Contains(request.SearchString)).Select(p => new ProductResponse
             {
                 Id = p.Id,
+                Name = p.Name,
                 CategoryId = p.CategoryId,
                 Quantity = p.Quantity,
                 Price = p.Price

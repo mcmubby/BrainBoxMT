@@ -11,10 +11,10 @@ namespace Persistence
         {
             services.AddScoped<IAppDbContext, AppDbContext>();
 
-            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
-            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
-            var dbUser = Environment.GetEnvironmentVariable("DB_USER");
-            var dbPass = Environment.GetEnvironmentVariable("DB_PASSWORD");
+            var dbHost = "localhost"; //Environment.GetEnvironmentVariable("DB_HOST");
+            var dbName = "brainboxdb"; //Environment.GetEnvironmentVariable("DB_NAME");
+            var dbUser = "postgres"; //Environment.GetEnvironmentVariable("DB_USER");
+            var dbPass = "postgres";// Environment.GetEnvironmentVariable("DB_PASSWORD");
             
             var connectionString = $"Host={dbHost};Port=5432;Database={dbName};Username={dbUser};Password={dbPass};Include Error Detail=true;Trust Server Certificate=true";
 

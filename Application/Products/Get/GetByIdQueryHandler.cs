@@ -18,6 +18,7 @@ namespace Application.Products.Get
             var product = await _context.Products.Where(p => p.Id == request.ProductId).AsNoTracking().Select(p => new ProductResponse
             {
                 Id = p.Id,
+                Name = p.Name,
                 CategoryId = p.CategoryId,
                 Quantity = p.Quantity,
                 Price = p.Price

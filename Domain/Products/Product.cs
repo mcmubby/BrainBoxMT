@@ -10,6 +10,6 @@ namespace Domain.Products
 
         public bool IsDeleted { get; set; }
 
-        public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ProductCategory Category { get; set; }
     }
 }

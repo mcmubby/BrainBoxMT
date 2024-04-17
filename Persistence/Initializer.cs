@@ -16,9 +16,11 @@ namespace Persistence
                 if (!dbContext.ProductCategories.Any())
                 {
                     var categories = ReadCategoryCsv();
-                    var products = ReadProductCsv();
+                    //var products = ReadProductCsv();
                     dbContext.ProductCategories.AddRange(categories);
-                    dbContext.Products.AddRange(products);
+                    //dbContext.SaveChanges();
+                    //dbContext.Products.AddRange(products);
+                    //dbContext.SaveChanges();
                     dbContext.AppUsers.Add(new Domain.AppUsers.AppUser { Name = "Default User"});
                     dbContext.SaveChanges();
                 }
