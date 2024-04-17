@@ -21,13 +21,25 @@ namespace Application.CartQC.Create
                                              .Where(c => c.AppUserId == request.UserId)
                                              .Include(ci => ci.CartItems).FirstOrDefaultAsync();
 
-            if(existingCart is not null && existingCart.CartItems.Any(p => p.ProductId == request.ProductId)) {throw new ExistingRecordException(); }
+            if (existingCart == null) {
+                var n = new Domain.Carts.Cart
+                {
+                    AppUserId = request.UserId,
+                };
+                _context.Carts.Add(n);
+                _context.SaveChanges();
+
+                existingCart = n;
+            }
+
+            if(existingCart.CartItems.Any(p => p.ProductId == request.ProductId)) {throw new ExistingRecordException(); }
 
             var product = await _context.Products.Where(p => p.Id == request.ProductId).FirstOrDefaultAsync();
 
             var newItem = new CartItem{
                 ProductId = request.ProductId,
                 Quantity = request.Quantity,
+                Name = product.Name,
                 UnitPrice = product.Price,
                 CartId = existingCart.Id
             };

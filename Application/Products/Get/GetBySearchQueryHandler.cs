@@ -16,7 +16,7 @@ namespace Application.Products.Get
 
         public async Task<PaginatedResult<ProductResponse>> Handle(GetBySearchQuery request, CancellationToken cancellationToken)
         {
-            var productQuery = _context.Products.AsNoTracking().Where(p => p.Name.ToLower().Contains(request.SearchString)).Select(p => new ProductResponse
+            var productQuery = _context.Products.AsNoTracking().Where(p => p.Name.ToLower().Contains(request.SearchString) && p.IsDeleted == false).Select(p => new ProductResponse
             {
                 Id = p.Id,
                 Name = p.Name,
